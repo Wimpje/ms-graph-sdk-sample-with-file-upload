@@ -4,9 +4,9 @@
 */
 
 var APPLICATION_CONFIG = {
-    clientID: "ENTER_YOUR_CLIENT_ID",
-    redirectUri: "http://localhost:8080/",
+    clientID: "069bbab5-2c15-4033-8e9c-c9332ec98682",
+    redirectUri: "http://localhost:8080",
     interactionMode: "popUp",
     graphEndpoint: "https://graph.microsoft.com/v1.0/me",
-    graphScopes: ["user.read mail.send"]
+    graphScopes: ["files.readwrite.appfolder user.read"]
 };

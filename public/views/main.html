@@ -19,15 +19,13 @@
     </div>
     <div ng-show="main.isAuthenticated()">
       <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{ main.displayName }}!</h2>
-      <p class="ms-font-xl">You're now connected to Microsoft Graph. Click the button below to send a message from your account using the Microsoft Graph API. </p>
+      <p class="ms-font-xl">You're now connected to Microsoft Graph.</p>
       <div class="ms-TextField">
-        <input ng-model="main.emailAddress" class="ms-TextField-field">
+        <input type="file" id="file"><br>
+        <button ng-click="main.uploadFile()">upload</button>
       </div>
-      <button class="ms-Button" ng-click="main.sendMail()">
-        <span class="ms-Button-label">Send mail</span>
-      </button>
       <div ng-show="main.requestSuccess && main.requestFinished">
-        <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{ main.emailAddressSent }}!</p>
+        <p class="ms-font-m ms-fontColor-green">Successfully uploaded a file {{ main.fileName }}!</p>
       </div>
       <div ng-show="!main.requestSuccess && main.requestFinished">
         <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't send an email.</p>

@@ -4,6 +4,9 @@
 */
 
 
+// About MSGRAPH: https://github.com/microsoftgraph/msgraph-sdk-javascript#usage
+// About MSAL: (authentication library): https://docs.microsoft.com/en-us/azure/active-directory/develop/guidedsetups/active-directory-javascriptspa
+
 "use strict";
 
 function createApplication(applicationConfig) {
@@ -49,10 +52,29 @@ var clientApplication;
             delete localStorage.token;
             delete localStorage.user;
         },
+  
 
         // Get the profile of the current user.
         me: function me() {
           return graphClient.api('/me').get();
+        },
+
+        uploadFile: function uploadFile(file) {
+            var reader = new FileReader();
+            reader.addEventListener("load", function () {
+              return graphClient.api('/me/drive/special/approot/children/'+ file.name +'/content')
+                  .put(file, (err, res) => {
+                    if (err) {
+                      console.log(err, res, file);
+                      return;
+                    }
+                    console.log("We've uploaded your file!");
+                  });
+            }, false);
+
+            if (file) {
+              reader.readAsDataURL(file);
+            }
         },
 
         // Send an email on behalf of the current user.
